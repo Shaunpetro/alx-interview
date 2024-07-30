@@ -12,7 +12,7 @@ def canUnlockAll(boxes):
     keys = set()
     opened_boxes = []
     i = 0
-    
+
     while i < length:
         oldi = i
         opened_boxes.append(i)
@@ -25,7 +25,7 @@ def canUnlockAll(boxes):
             continue
         else:
             break
-    
+
     for i in range(length):
         if i not in opened_boxes and i != 0:
             return False
