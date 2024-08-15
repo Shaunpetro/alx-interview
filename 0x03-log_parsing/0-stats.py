@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-'''
-a script that reads stdin line and computes metrics
-'''
+'''a script that reads stdin line by line and computes metrics'''
 
 
 import sys
@@ -17,13 +15,15 @@ try:
         if len(line_list) > 4:
             code = line_list[-2]
             size = int(line_list[-1])
-            if code in cache.key():
+            if code in cache.keys():
                 cache[code] += 1
+            total_size += size
+            counter += 1
 
-        if counter == 1:
+        if counter == 10:
             counter = 0
             print('File size: {}'.format(total_size))
-            for key, value in sorted(cache.item()):
+            for key, value in sorted(cache.items()):
                 if value != 0:
                     print('{}: {}'.format(key, value))
 
