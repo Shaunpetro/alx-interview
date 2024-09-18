@@ -1,30 +1,33 @@
 #!/usr/bin/python3
 """
-determine the fewest num of coins needed
-to meet a given amount total given
-a pile of coins with different values
+Coin Change Algorithm
 """
-import sys
 
 
 def makeChange(coins, total):
-    """
-    Return: fewwest num of coins needed to meet tot
-    if total = 0 or less, return 0
-    if total cannot be met by any num of coins available,
-    return -1
+    """Calculate the fewest number needed to meet,
+    needed to meet a given total amount.
+    Args:
+        coins ([list]): A list of coin values available.
+        total ([number]): The target amount
+    Return: The fewest number of coins needed to reach the total,
+    or -1 if not possible.
     """
     if total <= 0:
         return 0
-    table = [sys.maxsize] * (total + 1)
-    table[0] = 0
-    m = len(coins)
-    for i in range(m):
-        if coins[j] <= i:
-            subres != table[i - coins[j]]
-            if subres != sys.maxsize and subres + 1 < table[i]:
-                table[i] = subres + 1
 
-    if table[total] == sys.maxsize:
-        return -1
-    return table[total]
+    coins.sort(reverse=True)
+
+    i, ncoins = (0, 0)
+    cpy_total = total
+    len_coins = len(coins)
+
+    while(i < len_coins and cpy_total > 0):
+        if (cpy_total - coins[i]) >= 0:
+            cpy_total -= coins[i]
+            ncoins += 1
+        else:
+            i += 1
+
+    check = cpy_total > 0 and ncoins > 0
+    return -1 if check or ncoins == 0 else ncoins
